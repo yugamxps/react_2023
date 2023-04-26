@@ -25,6 +25,12 @@ const Home = () => {
     this.setState({ userData }); */
     console.log(state);
   };
+  const memo = () => {
+    let i = 0;
+    while (i < 1000000) {
+      console.log(i);
+    }
+  };
   console.log(refContainer);
   return (
     <>
