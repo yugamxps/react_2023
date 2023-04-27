@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { memo, useState, useRef, useMemo } from 'react';
 
 const Home = () => {
   let [state, setState] = useState([]);
+  let [state1, setState1] = useState(0);
   const refContainer = useRef({});
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,26 +13,11 @@ const Home = () => {
     );
     let userName = refContainer.current['name'].value;
     let userEmail = refContainer.current['email'].value;
-    // let userData = [...state, { name: userName }];
-    // setState((oldArray) => state[(oldArray, { name: userName })]);
-    // setState((oldArray) => state[(oldArray, { email: userEmail })]);
-    state.push({ Name: userName, email: userEmail });
-
-    // Add item to it
-    /*     userData.push({ name: userName });
-    userData.push({ email: userEmail });
-
-    // Set state
-    this.setState({ userData }); */
-    console.log(state);
+    state.push({ name: userName, email: userEmail });
+    // console.log(state);
   };
-  const memo = () => {
-    let i = 0;
-    while (i < 1000000) {
-      console.log(i);
-    }
-  };
-  console.log(refContainer);
+
+  // console.log(refContainer);
   return (
     <>
       <form className='form' onSubmit={handleSubmit}>
@@ -54,8 +40,23 @@ const Home = () => {
         <div>
           <button type='submit'>Save Values</button>
         </div>
+        <Greet name={state1} />
       </form>
     </>
   );
 };
 export default Home;
+
+const Greet = memo(function Greet({ j }) {
+  // let i = 0;
+  while (j < 1000000) {
+    j++;
+    // setState1(state1);
+    return (
+      <h3>
+        Hello{j && ', '}
+        {j}!
+      </h3>
+    );
+  }
+});
